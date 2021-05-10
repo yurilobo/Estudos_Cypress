@@ -16,4 +16,3 @@ const system = () => {
     console.log('end')
 }
 system();
-© 2021 GitHub, Inc.
