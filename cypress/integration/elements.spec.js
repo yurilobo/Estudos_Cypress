@@ -67,8 +67,11 @@ describe('Work with basic elements', ()=>{
         cy.get('[data-test=dataEscolaridade]')
             .select('1graucomp')
             .should('have.value','1graucomp')
+        
+        cy.get('[data-test=dataEscolaridade] option')
+            .should('have.length', 8)
     })
-    it.only('Combo multiplo', ()=>{
+    it('Combo multiplo', ()=>{
         
         
         cy.get('[data-testid=dataEsportes]')

@@ -2,7 +2,7 @@
 
 describe('Cypress basic', ()=>{
     it('Shold visit a page and assert title',()=>{
-        cy.pause()
+        //cy.pause()
 
         cy.visit('https://wcaquino.me/cypress/componentes.html')
         
@@ -12,8 +12,12 @@ describe('Cypress basic', ()=>{
         cy.title()
             .should('be.equal', 'Campo de Treinamento')
             .should('contain', 'Campo ')
+        cy.title().then(title =>{
+            console.log(title)
+        })
        
     })
+    
     it('Shold visit a page and assert title',()=>{
         cy.visit('https://wcaquino.me/cypress/componentes.html')
         
