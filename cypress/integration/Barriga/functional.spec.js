@@ -4,12 +4,14 @@ import loc from'../../support/locators'
 
 describe('Should test at a functional level',() =>{
     before(()=>{
-        cy.visit('https://barrigareact.wcaquino.me/')
-        cy.get(loc.LOGIN.USER).type('yuri.teste@teste.com')
-        cy.get(loc.LOGIN.PASSWORD).type('123456')
-        cy.get(loc.LOGIN.BTN_LOGIN).click()
+        cy.login('yuri.teste@teste.com','123456')
+        cy.resetApp()
+        //cy.visit('https://barrigareact.wcaquino.me/')
+        //cy.get(loc.LOGIN.USER).type('yuri.teste@teste.com')
+        //cy.get(loc.LOGIN.PASSWORD).type('123456')
+        //cy.get(loc.LOGIN.BTN_LOGIN).click()
         //cy.get('.toast-message').should('exist')
-        cy.get(loc.MESSAGE).should('contain', 'Bem vindo')
+        //cy.get(loc.MESSAGE).should('contain', 'Bem vindo')
     })
     it('login',()=>{
         cy.get(loc.MENU.SETTINGS).click()
