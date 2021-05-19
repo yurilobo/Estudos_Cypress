@@ -21,11 +21,16 @@ const locators = {
         DESCRICAO: '[data-test=descricao]',
         VALOR: '[data-test=valor]',
         INTERESSADO: '[data-test=envolvido]',
+        CONTA: '[data-test=conta]',
+        STATUS: '[data-test=status]',
         BTN_SALVAR: '.btn-primary'
     },
     EXTRATO:{
         LINHAS: '.list-group > li',
         XP_BUSCA_ELEMENTO: "//span[contains(., 'Desc')]/following-sibling::small[contains(., '123')]",
+    },
+    SALDO: {
+        FN_XP_SALDO_CONTA: nome => `//td[contains(., '${nome}')]/../td[2]`
     },
     
     MESSAGE: '.toast-message'
