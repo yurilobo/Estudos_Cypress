@@ -9,7 +9,7 @@ describe('Should test at a functional level',() =>{
         cy.resetApp()
         
     })
-    it('login',()=>{
+    it('Should criate an accont',()=>{
         cy.acessarMenuConta()
         cy.inserirConta('Conta nova teste')
         
@@ -18,7 +18,7 @@ describe('Should test at a functional level',() =>{
     it('Should update an accont', ()=>{
         cy.acessarMenuConta()
 
-        cy.xpath(loc.CONTAS.XP_BTN_ALTERAR).click()
+        cy.xpath(loc.CONTAS.FN_XP_BTN_ALTERAR('Conta para alterar')).click()
         cy.get(loc.CONTAS.NOME)
             .clear()
             .type('Conta aterada')
@@ -38,7 +38,7 @@ describe('Should test at a functional level',() =>{
         cy.get(loc.MOVIMENTACAO.DESCRICAO).type('Desc')
         cy.get(loc.MOVIMENTACAO.VALOR).type('123')
         cy.get(loc.MOVIMENTACAO.INTERESSADO).type('Inter')
-        cy.get(loc.MOVIMENTACAO.CONTA).select('Conta para alterar')
+        cy.get(loc.MOVIMENTACAO.CONTA).select('Conta para movimentacoes')
         cy.get(loc.MOVIMENTACAO.STATUS).click()
         cy.get(loc.MOVIMENTACAO.BTN_SALVAR).click()
         cy.get(loc.MESSAGE).should('contain', 'sucesso')
@@ -49,11 +49,11 @@ describe('Should test at a functional level',() =>{
     })
     it('Should get balance', ()=>{
         cy.get(loc.MENU.HOME).click()
-        cy.xpath(loc.SALDO.FN_XP_SALDO_CONTA('Conta para alterar')).should('contain','123,00')
+        cy.xpath(loc.SALDO.FN_XP_SALDO_CONTA('Conta para saldo')).should('contain','534,00')
     })
     it('Should remover movimentação', ()=>{
         cy.get(loc.MENU.EXTRATO).click()
-        cy.xpath(loc.EXTRATO.FN_XP_REMOVER_ELEMENTO('Desc')).click()
+        cy.xpath(loc.EXTRATO.FN_XP_REMOVER_ELEMENTO('Movimentacao para exclusao')).click()
         cy.get(loc.MESSAGE).should('contain', 'sucesso')
     })
     
