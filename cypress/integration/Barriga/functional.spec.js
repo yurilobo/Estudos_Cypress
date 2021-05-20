@@ -52,9 +52,21 @@ describe('Should test at a functional level',() =>{
         cy.get(loc.EXTRATO.LINHAS).should('have.length', 7)
         cy.xpath(loc.EXTRATO.XP_BUSCA_ELEMENTO).should('exist')
     })
-    it('Should get balance', ()=>{
+    it.only('Should get balance', ()=>{
         cy.get(loc.MENU.HOME).click()
         cy.xpath(loc.SALDO.FN_XP_SALDO_CONTA('Conta para saldo')).should('contain','534,00')
+
+        cy.get(loc.MENU.EXTRATO).click()
+        cy.xpath(loc.EXTRATO.FN_XP_ALTERAR_ELEMENTO('Movimentacao 1, calculo saldo')).click()
+        
+        cy.get(loc.MOVIMENTACAO.DESCRICAO).should('have.value', 'Movimentacao 1, calculo saldo')
+        cy.get(loc.MOVIMENTACAO.STATUS).click()
+        cy.get(loc.MOVIMENTACAO.BTN_SALVAR).click()
+        cy.get(loc.MESSAGE).should('contain', 'sucesso')
+
+        cy.get(loc.MENU.HOME).click()
+        cy.xpath(loc.SALDO.FN_XP_SALDO_CONTA('Conta para saldo')).should('contain', '4.034,00')
+
     })
     it('Should remover movimentação', ()=>{
         cy.get(loc.MENU.EXTRATO).click()
