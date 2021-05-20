@@ -28,6 +28,7 @@ const locators = {
     EXTRATO:{
         LINHAS: '.list-group > li',
         XP_BUSCA_ELEMENTO: "//span[contains(., 'Desc')]/following-sibling::small[contains(., '123')]",
+        FN_XP_REMOVER_ELEMENTO: conta => `//span[contains(., '${conta}')]/../../..//i[@class='far fa-trash-alt']`,
     },
     SALDO: {
         FN_XP_SALDO_CONTA: nome => `//td[contains(., '${nome}')]/../td[2]`
