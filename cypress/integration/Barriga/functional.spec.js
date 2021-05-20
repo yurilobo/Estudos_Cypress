@@ -6,9 +6,14 @@ import '../../support/commandsContas'
 describe('Should test at a functional level',() =>{
     before(()=>{
         cy.login('yuri.teste@teste.com','123456')
-        cy.resetApp()
+        
         
     })
+    beforeEach(()=>{
+        cy.get(loc.MENU.HOME).click()
+        cy.resetApp()
+    })
+
     it('Should criate an accont',()=>{
         cy.acessarMenuConta()
         cy.inserirConta('Conta nova teste')
@@ -28,7 +33,7 @@ describe('Should test at a functional level',() =>{
     it('Should not creat an account with same name',()=>{
         cy.acessarMenuConta()
 
-        cy.get(loc.CONTAS.NOME).type('Conta aterada')
+        cy.get(loc.CONTAS.NOME).type('Conta mesmo nome')
         cy.get(loc.CONTAS.BTN_SALVAR).click()
         cy.get(loc.MESSAGE).should('contain','code 400' )
     })
