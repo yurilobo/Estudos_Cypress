@@ -44,3 +44,18 @@ Cypress.Commands.add('resetApp',()=>{
     cy.get(loc.MENU.SETTINGS).click()
     cy.get(loc.MENU.RESET).click()
 })
+Cypress.Commands.add('getToken', (user, password)=>{
+    cy.request({
+        method: 'POST',
+        url: 'https://barrigarest.wcaquino.me/signin',
+        body:{
+            email: user,
+            redirecionar: false,
+            senha: password
+        }
+    //then(res=>console.log(res))
+    }).its('body.token').should('not.be.empty')
+        .then(token=>{
+            return token
+        })
+})

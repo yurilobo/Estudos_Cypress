@@ -1,42 +1,53 @@
 ///<reference types="cypress"/>
 
 
-describe('Should test at a functional level',() =>{
-    before(()=>{
-       // cy.login('yuri.teste@teste.com','123456')
-        
+describe('Should test at a functional level', () => {
+    let token
+    before(() => {
+        cy.getToken('yuri.teste@teste.com', '123456')
+            .then(tkn => {
+                token = tkn
+            })
+
     })
-    beforeEach(()=>{
-       // cy.get(loc.MENU.HOME).click()
+    beforeEach(() => {
+        // cy.get(loc.MENU.HOME).click()
         //cy.resetApp()
     })
 
-    it('Login',()=>{
+    it('Login', () => {
+        
         cy.request({
+            url: 'https://barrigarest.wcaquino.me/contas',
             method: 'POST',
-            url: 'https://barrigarest.wcaquino.me/signin',
-            body:{
-                email: "yuri.teste@teste.com",
-                redirecionar: false,
-                senha: "123456"
+            headers: { Authorization: `JWT ${token}` },
+            body: {
+                nome: 'Conta de teste do nome'
             }
-        }).its('body.token').should('not.be.empty')//then(res=>console.log(res))
+            //.then(res => console.log(res))
+        }).as('response')
+
+        cy.get('@response').then(res => {
+            expect(res.status).to.be.equal(201)
+            expect(res.body).to.have.property('id')
+            expect(res.body).to.have.property('nome', 'Conta de teste do nome')
+        })
     })
-    it('Should update an accont', ()=>{
-        
+    it('Should update an accont', () => {
+
     })
-    it('Should not creat an account with same name',()=>{
-       
+    it('Should not creat an account with same name', () => {
+
     })
-    it('Should create a transation', ()=>{
-        
-      
+    it('Should create a transation', () => {
+
+
     })
-    it('Should get balance', ()=>{
-        
+    it('Should get balance', () => {
+
     })
-    it('Should remover movimentação', ()=>{
-        
+    it('Should remover movimentação', () => {
+
     })
-    
+
 })
