@@ -42,7 +42,7 @@ describe('Should test at a functional level',() =>{
        
     })
 
-    it.only('Should criate an accont',()=>{
+    it('Should criate an accont',()=>{
         cy.route({
             method: 'GET',
             url: '/contas',
@@ -75,10 +75,26 @@ describe('Should test at a functional level',() =>{
         
         cy.get(loc.MESSAGE).should('contain', 'Conta inserida com sucesso')
     })
-    it('Should update an accont', ()=>{
+    it.only('Should update an accont', ()=>{
+        cy.route({
+            method: 'GET',
+            url: '/contas',
+            response: [
+                {id:1 ,nome:"Carteira", visivel:true,usuario_id:1},
+                {id:1 ,nome:"Banco", visivel:true,usuario_id:1}
+            ]
+        }).as('contas')
+        cy.route({
+            method: 'PUT',
+            url: '/contas/1',
+            response: [
+                {id:1 ,nome:"Carteira ALTERADA", visivel:true,usuario_id:1},
+               
+            ]
+        })
         cy.acessarMenuConta()
 
-        cy.xpath(loc.CONTAS.FN_XP_BTN_ALTERAR('Conta para alterar')).click()
+        cy.xpath(loc.CONTAS.FN_XP_BTN_ALTERAR('Carteira')).click()
         cy.get(loc.CONTAS.NOME)
             .clear()
             .type('Conta aterada')
