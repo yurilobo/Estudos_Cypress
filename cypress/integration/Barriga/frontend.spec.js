@@ -39,11 +39,38 @@ describe('Should test at a functional level',() =>{
     })
     beforeEach(()=>{
         cy.get(loc.MENU.HOME).click()
-        cy.resetApp()
+       
     })
 
-    it('Should criate an accont',()=>{
+    it.only('Should criate an accont',()=>{
+        cy.route({
+            method: 'GET',
+            url: '/contas',
+            response: [
+                {id:1 ,nome:"Carteira", visivel:true,usuario_id:1},
+                {id:1 ,nome:"Banco", visivel:true,usuario_id:1}
+            ]
+        }).as('contas')
+        cy.route({
+            method: 'POST',
+            url: '/contas',
+            response: [
+                {id:3 ,nome:"Conta nova teste", visivel:true,usuario_id:1}
+            ]
+        }).as('saveContas')
+        
+        
         cy.acessarMenuConta()
+        cy.route({
+            method: 'GET',
+            url: '/contas',
+            response: [
+                {id:1 ,nome:"Carteira", visivel:true,usuario_id:1},
+                {id:1 ,nome:"Banco", visivel:true,usuario_id:1},
+                {id:3 ,nome:"Conta nova teste", visivel:true,usuario_id:1}
+            ]
+        }).as('contasFake')
+
         cy.inserirConta('Conta nova teste')
         
         cy.get(loc.MESSAGE).should('contain', 'Conta inserida com sucesso')
