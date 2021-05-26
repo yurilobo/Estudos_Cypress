@@ -2,55 +2,22 @@
 
 import loc from'../../support/locators'
 import '../../support/commandsContas'
+import buildEnv from '../../support//buildEnv.js'
 
 describe('Should test at a functional level',() =>{
     after(() => {
         cy.clearLocalStorage()
     })
-    before(()=>{
-        cy.server()
-        cy.route({
-            method: 'POST',
-            url: '/signin',
-            response: {
-                id: 1000,
-                nome: 'Usuario falso',
-                token: 'Uma string muito grande que nao deveria ser aceito mas na verdade, vai'
-            }
-        }).as('signin')
-        cy.route({
-            method: 'GET',
-            url: '/saldo',
-            response: [{
-                conta_id: 999,
-                conta: "Carteira",
-                saldo: "100.00"
-            },
-            {
-                conta_id: 9909,
-                conta: "Banco",
-                saldo: "10000000.00"
-            },
-            ]
-        }).as('saldo')
-        cy.login('yuri.teste@teste.com','15246')
-        
-        
-    })
+    
     beforeEach(()=>{
+        buildEnv()
+        cy.login('yuri.teste@teste.com','15246')
         cy.get(loc.MENU.HOME).click()
        
     })
 
     it('Should criate an accont',()=>{
-        cy.route({
-            method: 'GET',
-            url: '/contas',
-            response: [
-                {id:1 ,nome:"Carteira", visivel:true,usuario_id:1},
-                {id:1 ,nome:"Banco", visivel:true,usuario_id:1}
-            ]
-        }).as('contas')
+        
         cy.route({
             method: 'POST',
             url: '/contas',
@@ -75,15 +42,8 @@ describe('Should test at a functional level',() =>{
         
         cy.get(loc.MESSAGE).should('contain', 'Conta inserida com sucesso')
     })
-    it.only('Should update an accont', ()=>{
-        cy.route({
-            method: 'GET',
-            url: '/contas',
-            response: [
-                {id:1 ,nome:"Carteira", visivel:true,usuario_id:1},
-                {id:1 ,nome:"Banco", visivel:true,usuario_id:1}
-            ]
-        }).as('contas')
+    it('Should update an accont', ()=>{
+       
         cy.route({
             method: 'PUT',
             url: '/contas/1',
