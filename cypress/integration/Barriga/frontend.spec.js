@@ -15,6 +15,23 @@ describe('Should test at a functional level',() =>{
         cy.get(loc.MENU.HOME).click()
        
     })
+    it.only('Should test responsividade', () => {
+        cy.get('[data-test=menu-home]').should('exist')
+            .and('be.visible')
+        cy.viewport(500,700)
+        cy.get('[data-test=menu-home]').should('exist')
+            .and('be.not.visible')
+        cy.viewport(500,700)
+        cy.get('[data-test=menu-home]').should('exist')
+            .and('be.not.visible')
+        cy.viewport('iphone-5')
+        cy.get('[data-test=menu-home]').should('exist')
+            .and('be.not.visible')
+        cy.viewport('ipad-2')
+        cy.get('[data-test=menu-home]').should('exist')
+            .and('be.visible')
+        cy.viewport(500,700)
+    })
 
     it('Should criate an accont',()=>{
         
@@ -190,7 +207,7 @@ describe('Should test at a functional level',() =>{
         cy.xpath(loc.EXTRATO.FN_XP_REMOVER_ELEMENTO('Movimentacao para exclusao')).click()
         cy.get(loc.MESSAGE).should('contain', 'sucesso')
     })
-    it.only('Should validate data send to create an account', () => {
+    it('Should validate data send to create an account', () => {
         const reqStub = cy.stub()
         cy.route({
             method: 'POST',
@@ -239,5 +256,7 @@ describe('Should test at a functional level',() =>{
         cy.xpath(loc.EXTRATO.FN_XP_LINHA('Despesa paga')).should('have.class', 'despesaPaga')
         cy.xpath(loc.EXTRATO.FN_XP_LINHA('Despesa pendente')).should('have.class', 'despesaPendente')
     })
+   
+    
 
 })
