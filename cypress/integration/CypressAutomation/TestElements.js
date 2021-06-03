@@ -30,7 +30,13 @@ describe('Ui Elements', function()
                 .should('be.visible')
 
 
-            cy.get('input[type="radio"]') .check('Male').should('be.checked')
+            cy.get('input[type="radio"]').check('Male').should('be.checked')
+
+            cy.get('input[type="checkbox"]').check(['Cricket']).should('be.checked')
+                //eu sei que esta rodando duas vezes mas fiz pra ver como se comporta
+            cy.get('#checkbox1').uncheck().should('not.be.checked').and('have.value', 'Cricket')
+            cy.get('#checkbox2').check().should('be.checked').and('have.value', 'Movies')
+            cy.get('#checkbox3').uncheck().should('not.be.checked').and('have.value', 'Hockey')
         }
             
         )
