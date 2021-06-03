@@ -29,6 +29,8 @@ describe('Ui Elements', function()
                 .type('9999999999')
                 .should('be.visible')
 
+
+            cy.get('input[type="radio"]') .check('Male').should('be.checked')
         }
             
         )
