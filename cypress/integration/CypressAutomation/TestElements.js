@@ -2,7 +2,7 @@
 
 describe('Ui Elements', function()
     {   
-        it("verify text, inputsbox e radiobuttons", function()
+        it("Verify text, inputsbox e radiobuttons", function()
             {
             cy.visit("http://demo.automationtesting.in/Register.html")
 
@@ -53,10 +53,17 @@ describe('Ui Elements', function()
                 .should('have.value', 'Software') 
         })
         
-        it("country Multi select", function(){
-           
+        it("Country Multi select", function(){
             cy.get('#countries').select("Argentina") 
             .should('have.value', 'Argentina')    
+        } )
+
+        it("Select countries searchable drop downs Multi select", function(){
+           
+            cy.get('[role=combobox]').click({force: true})
+            cy.get('.select2-search__field').type('aus').click()
+            cy.get('.select2-search__field').type('{enter}')  
+            
         
         } )
 
