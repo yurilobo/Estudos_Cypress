@@ -2,7 +2,7 @@
 
 describe('Ui Elements', function()
     {   
-        it("verify inputsbox e radiobuttons", function()
+        it("verify text, inputsbox e radiobuttons", function()
             {
             cy.visit("http://demo.automationtesting.in/Register.html")
 
@@ -37,21 +37,30 @@ describe('Ui Elements', function()
             cy.get('#checkbox1').uncheck().should('not.be.checked').and('have.value', 'Cricket')
             cy.get('#checkbox2').check().should('be.checked').and('have.value', 'Movies')
             cy.get('#checkbox3').uncheck().should('not.be.checked').and('have.value', 'Hockey')
-            
+        })
+        it("Languages Multi select", function(){
             cy.get('#msdd')
-                .click({force: true})
-                cy.get('.ui-corner-all').contains('Portuguese').click().should('not.be.visible')
-                cy.get('.ui-corner-all').contains('English').click().should('not.be.visible')
-            
-            //fiz essa gambiarra para sair do select que não estava saindo da linguagem
+            .click({force: true})
+            cy.get('.ui-corner-all').contains('Portuguese').click().should('not.be.visible')
+            cy.get('.ui-corner-all').contains('English').click().should('not.be.visible')
+        
+        })
+        it("Skills drop down", function(){
+            //fiz essa gambiarra para sair do select que não estava saindo do campo da linguagem
             cy.get(':nth-child(7) > .col-md-3').click({force: true})
             //assim consegui passar para poder selecionar a skill, mas vou melhorar o codigo
             cy.get('#Skills').select("Software") 
                 .should('have.value', 'Software') 
-            
-        }
-            
-        )
+        })
+        
+        it("country Multi select", function(){
+           
+            cy.get('#countries').select("Argentina") 
+            .should('have.value', 'Argentina')    
+        
+        } )
+
+        
 
     }
 )
