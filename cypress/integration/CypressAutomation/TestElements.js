@@ -37,6 +37,14 @@ describe('Ui Elements', function()
             cy.get('#checkbox1').uncheck().should('not.be.checked').and('have.value', 'Cricket')
             cy.get('#checkbox2').check().should('be.checked').and('have.value', 'Movies')
             cy.get('#checkbox3').uncheck().should('not.be.checked').and('have.value', 'Hockey')
+            
+            cy.get('#msdd')
+                .click({force: true})
+                cy.get('.ui-corner-all').contains('Portuguese').click()
+                cy.get('.ui-corner-all').contains('English').click()
+            
+            //cy.get('#Skills')
+            
         }
             
         )
