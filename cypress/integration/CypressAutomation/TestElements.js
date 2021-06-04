@@ -40,10 +40,14 @@ describe('Ui Elements', function()
             
             cy.get('#msdd')
                 .click({force: true})
-                cy.get('.ui-corner-all').contains('Portuguese').click()
-                cy.get('.ui-corner-all').contains('English').click()
+                cy.get('.ui-corner-all').contains('Portuguese').click().should('not.be.visible')
+                cy.get('.ui-corner-all').contains('English').click().should('not.be.visible')
             
-            //cy.get('#Skills')
+            //fiz essa gambiarra para sair do select que não estava saindo da linguagem
+            cy.get(':nth-child(7) > .col-md-3').click({force: true})
+            //assim consegui passar para poder selecionar a skill, mas vou melhorar o codigo
+            cy.get('#Skills').select("Software") 
+                .should('have.value', 'Software') 
             
         }
             
