@@ -59,13 +59,13 @@ describe('Ui Elements', function()
         } )
 
         it("Select countries searchable drop downs Multi select", function(){
-           
             cy.get('[role=combobox]').click({force: true})
             cy.get('.select2-search__field').type('aus').click()
             cy.get('.select2-search__field').type('{enter}')  
-            
-        
         } )
+
+       
+
 
         
 

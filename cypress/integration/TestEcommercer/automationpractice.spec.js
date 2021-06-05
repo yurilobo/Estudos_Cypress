@@ -11,6 +11,10 @@ describe('Minha suite de teste', function()
     {
         cy.get('#search_query_top').click().type('Faded Short Sleeve')
         cy.get('#searchbox > .btn').click()
-
+    })
+    it('Validando o produto', function() 
+    {
+        cy.contains('More').click()
+        
     })
 })
