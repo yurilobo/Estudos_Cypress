@@ -13,3 +13,4 @@ describe('work if ifame', ()=>{
     })
     
 })
+//cy.get('.ajax_add_to_cart_button > span')

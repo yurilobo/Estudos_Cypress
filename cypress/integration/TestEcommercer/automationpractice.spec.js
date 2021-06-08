@@ -24,12 +24,18 @@ describe('Minha suite de teste', function()
     it('clicando o item fora do carrinho', function(){
       cy.get('.block_content > :nth-child(1) > .product-content > h5 > .product-name').click()
       
+      
       cy.get('.exclusive').contains('Add to cart').click()
       cy.get('.button-container > .button-medium > span').contains('Proceed to checkout').click()
     })
+    it('preenchendo Date Of Birth', function()
+    {
+      cy.get('#yearbox').select('1995').should('have.value', '1995')
+    }
+    )
     
     
-    
+     
     
     
 })
