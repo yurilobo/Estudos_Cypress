@@ -68,12 +68,21 @@ describe('Ui Elements', function () {
         cy.get('#daybox').select('29').should('have.value', '29')    
     }
     )
-
-
-
-
-
-
-
+    it('preenchendo password', function () {
+        
+        //cy.get('input[ng-model="Password"]')
+        cy.get('#firstpassword').type('23.LL2642sd')
+        
+    }
+    )
+    it('confirindo password', function () {
+        
+        cy.get('#secondpassword').type('23.LL2642sd')
+        
+       //cy.get('input[ng-model="Password"]')
+        
+    }
+    )
+    
 }
 )
