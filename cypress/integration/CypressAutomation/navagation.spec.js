@@ -1,3 +1,4 @@
+///<reference types = "cypress"/>
 describe('Minha suite de teste', function() 
 {
     it('Verificando titulo da pagina', function() 
