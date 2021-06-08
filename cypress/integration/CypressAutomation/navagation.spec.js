@@ -1,5 +1,5 @@
 ///<reference types = "cypress"/>
-describe('Minha suite de teste', function() 
+describe('Minha suite de teste navegacao', function() 
 {
     it('Verificando titulo da pagina', function() 
     {
