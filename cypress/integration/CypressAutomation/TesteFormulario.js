@@ -81,6 +81,9 @@ describe('Ui Elements', function () {
         
        //cy.get('input[ng-model="Password"]')
         
+    })
+    it('submit', function () {       
+        cy.get('#submitbtn').click()
     }
     )
     
