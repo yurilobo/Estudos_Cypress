@@ -94,3 +94,11 @@ Cypress.Commands.overwrite('request', (originalFn, ...options) => {
 
     return originalFn(...options)
 })
+
+Cypress.Commands.add("login", (email, password) => { 
+    cy.visit('https://admin-demo.nopcommerce.com/login')
+    cy.get('input[name=Email]')
+    cy.get('input[name=Password]')
+    cy.get('.button-1').click()
+
+ })
